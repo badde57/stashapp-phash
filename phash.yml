@@ -5,7 +5,7 @@ url: https://github.com/badde57/stashapp-phash
 exec:
   - python
   - "{pluginDir}/phash.py"
-  - "{pluginDir}/../phash.sqlite"
+  - "{pluginDir}/../../phash.sqlite"
 interface: raw
 tasks:
   - name: PHash scenes
