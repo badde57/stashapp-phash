@@ -1,0 +1,14 @@
+name: phash
+description: Calculates frame-level perceptual hashes
+version: 0.1
+url: https://github.com/badde57/stashapp-phash
+exec:
+  - python
+  - "{pluginDir}/phash.py"
+  - "{pluginDir}/../phash.sqlite"
+interface: raw
+tasks:
+  - name: PHash scenes
+    description: Calculate frame-level perceptual hashes for unhashed scenes
+    defaultArgs:
+      mode: catchup
