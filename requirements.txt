@@ -1,3 +1,4 @@
 opencv-python
 perception
 stashapp-tools
+scipy
