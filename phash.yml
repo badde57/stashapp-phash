@@ -1,11 +1,11 @@
 name: phash
 description: Calculates frame-level perceptual hashes
-version: 0.1
+version: '1.0.0'
 url: https://github.com/badde57/stashapp-phash
 exec:
   - python
   - "{pluginDir}/phash.py"
-  - "{pluginDir}/../../phash.sqlite"
+  - "{pluginDir}/../../../meta.sqlite"
 interface: raw
 tasks:
   - name: PHash scenes
