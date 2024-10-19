@@ -23,7 +23,18 @@ Possible use cases:
 0. Install requirements: `pip install -r requirements.txt`. Briefly, it's opencv, stashapp-tools, perception, and their respective dependencies. This requires **python 3.11**.
 
 1. Create a database for storing perceptual hashes:
-  `echo "CREATE TABLE phash( file_id INT NOT NULL, frame int not null, phash CHAR(12) NOT NULL, unique (file_id, frame));" | sqlite3 /path/to/phash.sqlite`
+  ```
+  echo "
+    CREATE TABLE phash(
+      endpoint TEXT NOT NULL,
+      stash_id TEXT NOT NULL,
+      time_offset float not null, 
+      time_duration float not null, 
+      phash CHAR(12) NOT NULL, 
+      method TEXT NOT NULL, 
+      unique (stash_id, time_offset, method)
+    );
+  " | sqlite3 /path/to/phash.sqlite
 
 2. Update `phash.yml` to use the path to the sqlite datbase you created. In the config, it's by default:
   `  - "{pluginDir}/../phash.sqlite"`
