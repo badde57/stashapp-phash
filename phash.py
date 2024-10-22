@@ -3,7 +3,7 @@ import sys
 import json
 import sqlite3
 
-METHOD = 'phash-1.0.2'
+METHOD = 'phash-1.0.3'
 
 per_page = 10
 
@@ -92,9 +92,10 @@ def checkphash(scene):
             curr_hash = hasher.compute(image)
             if curr_hash != prev_hash:
                 if prev_hash != "":
-                    time_duration = int(100 * (frame_start - frame_count) / fps) / 100
-                    time_offset = int(100 * frame_start / fps) / 100
-                    cur.execute('INSERT INTO phash (endpoint, stash_id, time_offset, time_duration, phash, method) VALUES (?,?,?,?,?,?)',(endpoint, stash_id, time_offset, time_duration, curr_hash, METHOD,))
+                    time_offset = round((frame_start - frame_count) / fps, 2)
+                    time_duration = round(frame_start / fps - time_offset, 2)
+                    cur.execute('INSERT OR IGNORE INTO phash (endpoint, stash_id, time_offset, time_duration, phash, method) VALUES (?,?,?,?,?,?)',(endpoint, stash_id, time_offset, time_duration, curr_hash, METHOD,))
+
                 prev_hash = curr_hash
                 frame_count = 1
             else:
