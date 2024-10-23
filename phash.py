@@ -59,7 +59,7 @@ def checkphash(scene):
     #log.info(scene)
 
     if len(scene['files']) != 1:
-        log.error(f"Scene {s['id']} must have exactly one file, skipping...")
+        log.error(f"Scene {scene['id']} must have exactly one file, skipping...")
         return
 
     for file in scene['files']:
